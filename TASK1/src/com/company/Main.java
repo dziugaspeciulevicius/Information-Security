@@ -2,6 +2,9 @@ package com.company;// Java code to implement Vigenere Cipher
 
 class Main
 {
+    
+//    https://stackoverflow.com/questions/37366567/vigenere-cipherjava
+//    https://www.sanfoundry.com/java-program-implement-vigenere-cypher/
 
     // This function generates the key in
 // a cyclic manner until it's length isi'nt 
