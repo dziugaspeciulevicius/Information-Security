@@ -25,6 +25,9 @@ public class Main
         String 	y =k;
         int m = pln%ky;
 
+        printf("asf");
+
+
         for( int i=1; i<pln/ky ; i++)
         {
             //if(i>=ky)
