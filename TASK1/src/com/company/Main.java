@@ -1,86 +1,67 @@
-<<<<<<< HEAD
-=======
-package com.company;// Java code to implement Vigenere Cipher
+package com.company;
 
-class Main
-{
-    
-//    https://stackoverflow.com/questions/37366567/vigenere-cipherjava
-//    https://www.sanfoundry.com/java-program-implement-vigenere-cypher/
+import java.util.Scanner;
 
-    // This function generates the key in
-// a cyclic manner until it's length isi'nt 
-// equal to the length of original text 
-    static String generateKey(String str, String key)
-    {
-        int x = str.length();
+public class Main {
+    public static void main(String[] args) {
 
-        for (int i = 0; ; i++)
-        {
-            if (x == i)
-                i = 0;
-            if (key.length() == str.length())
-                break;
-            key+=(key.charAt(i));
+        Scanner in = new Scanner(System.in);
+
+        System.out.println("\nVIGENERE CIPHER (DE/EN)CRYPTOR");
+        System.out.println("\n- Press 1 to encrypt a message - \n- Press 2 to decrypt a message - ");
+        int input = in.nextInt();
+
+        if (input == 1) {
+            System.out.print("Enter the message without spaces that would like to be encrypted by Vigenere cipher:  ");
+            String EMessage = in.next();
+            System.out.print("Enter the key in UPPER Case: ");
+            String key = in.next();
+            String encryptMessage = encrypt(EMessage, key);
+            System.out.println("The encrypted message is: " + encryptMessage);
         }
-        return key;
+        else if (input == 2) {
+            System.out.print("Enter the message without spaces that would like to be decrypted by Vigenere cipher: ");
+            String DMessage = in.next();
+            System.out.print("Enter the key in UPPER Case: ");
+            String key = in.next();
+            String decryptMessage = decrypt(DMessage, key);
+            System.out.println("The decrypted message is: " + decryptMessage);
+        }
+        else {
+            System.out.println("Wrong Input!");
+        }
+        in.close();
     }
 
-    // This function returns the encrypted text
-// generated with the help of the key 
-    static String cipherText(String str, String key)
-    {
-        String cipher_text="";
-
-        for (int i = 0; i < str.length(); i++)
-        {
-            // converting in range 0-25
-            int x = (str.charAt(i) + key.charAt(i)) %26;
-
-            // convert into alphabets(ASCII)
-            x += 'A';
-
-            cipher_text+=(char)(x);
+    //	Encryption
+    //	ASCII: "H" is 72 && "S" is 83
+    //	((72-65) + (83-65)) % 26 + 65 >> Encrypted "Z"
+    private static String encrypt(String Message, String Key) {
+        StringBuilder EMessage = new StringBuilder();
+        Message = Message.toUpperCase();
+        for (int i = 0, j = 0; i < Message.length(); i++) {
+            char letter = Message.charAt(i);
+            EMessage.append((char) (((letter - 65) + (Key.charAt(j) - 65)) % 26 + 65));
+            //EMessage += (char)(((letter - 65) + (Key.charAt(j)-65)) % 26 + 65);
+            j = ++j % Key.length();
         }
-        return cipher_text;
+        return EMessage.toString();
     }
 
-    // This function decrypts the encrypted text
-// and returns the original text 
-    static String originalText(String cipher_text, String key)
-    {
-        String orig_text="";
-
-        for (int i = 0 ; i < cipher_text.length() &&
-                i < key.length(); i++)
-        {
-            // converting in range 0-25
-            int x = (cipher_text.charAt(i) -
-                    key.charAt(i) + 26) %26;
-
-            // convert into alphabets(ASCII)
-            x += 'A';
-            orig_text+=(char)(x);
+    //	Decryption
+    //	Decryption Logic: Using ASCII Dec Representation:
+    //	Example:
+    //	ASCII: "Z" is 90 && "S" is 83
+    //	(90-83+26) % 26 + 65 >> Encrypted "Z"
+    private static String decrypt(String Message, String Key) {
+        StringBuilder DMessage = new StringBuilder();
+        Message = Message.toUpperCase();
+        for (int i = 0, j = 0; i < Message.length(); i++) {
+            char letter = Message.charAt(i);
+            DMessage.append((char) ((letter - Key.charAt(j) + 26) % 26 + 65));
+            //DMessage += (char)((letter - Key.charAt(j) + 26) % 26 + 65);
+            j = ++j % Key.length();
         }
-        return orig_text;
-    }
-
-    // Driver code
-    public static void main(String[] args)
-    {
-        String str = "GEEKSFORGEEKS";
-        String keyword = "AYUSH";
-
-        String key = generateKey(str, keyword);
-        String cipher_text = cipherText(str, key);
-
-        System.out.println("Ciphertext : "
-                + cipher_text + "\n");
-
-        System.out.println("Original/Decrypted Text : "
-                + originalText(cipher_text, key));
+        return DMessage.toString();
     }
 }
-
-// This code has been contributed by 29AjayKumar 
->>>>>>> b8f0fe5e1cf1b0ceb3ce39187c75ad3d72ad1056
