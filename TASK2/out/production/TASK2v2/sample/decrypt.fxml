@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="506.0" prefWidth="739.0" style="-fx-background-color: #A4A4A2;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Decrypt">
+   <children>
+      <TextArea fx:id="outputArea" layoutX="445.0" layoutY="119.0" prefHeight="330.0" prefWidth="240.0" promptText="Output" wrapText="true" />
+      <Text fill="WHITE" layoutX="60.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Read cipher from .txt or database and decrypt" textAlignment="CENTER" wrappingWidth="240.0">
+         <font>
+            <Font size="22.0" />
+         </font></Text>
+      <Button fx:id="chooseFile" layoutX="123.0" layoutY="252.0" mnemonicParsing="false" onAction="#OpenFileChooser" style="-fx-background-color: #E68FAD; -fx-font-weight: 700; -fx-font-size: 18;" text="Choose file" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <TextField fx:id="chosenFileField" alignment="CENTER" editable="false" layoutX="82.0" layoutY="313.0" prefHeight="31.0" prefWidth="196.0" promptText="Chosen file" />
+      <Button fx:id="decryptButton" layoutX="324.0" layoutY="252.0" mnemonicParsing="false" onAction="#Decrypt" style="-fx-background-color: #E68FAD;" text="Decrypt" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Button>
+      <HBox alignment="BOTTOM_LEFT" prefHeight="68.0" prefWidth="739.0" style="-fx-background-color: #E68FAD;">
+         <children>
+            <Button mnemonicParsing="false" onAction="#openEncryptWindow" prefHeight="54.0" prefWidth="212.0" style="-fx-background-color: #81817F;" text="Encrypt" textFill="#fcfcfc">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="195.0" style="-fx-background-color: #A4A4A2;" text="Decrypt" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets top="5.0" />
+         </opaqueInsets>
+      </HBox>
+   </children>
+</AnchorPane>

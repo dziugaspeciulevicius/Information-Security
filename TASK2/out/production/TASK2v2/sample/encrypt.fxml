@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="506.0" prefWidth="739.0" style="-fx-background-color: #A4A4A2;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Encrypt">
+   <children>
+      <TextArea fx:id="plaintextInput" layoutX="87.0" layoutY="172.0" prefHeight="115.0" prefWidth="200.0" promptText="Enter plaintext here" wrapText="true" />
+      <TextArea fx:id="keyInput" layoutX="87.0" layoutY="302.0" prefHeight="73.0" prefWidth="200.0" promptText="Enter key here" wrapText="true" />
+      <Button fx:id="encryptButton" layoutX="325.0" layoutY="234.0" mnemonicParsing="false" onAction="#Encrypt" style="-fx-background-color: #E68FAD;" text="Encrypt" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Button>
+      <Text fill="WHITE" layoutX="93.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Encrypt using AES algorithm" />
+      <HBox alignment="BOTTOM_LEFT" prefHeight="68.0" prefWidth="739.0" style="-fx-background-color: #E68FAD;">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="212.0" style="-fx-background-color: #A4A4A2;" text="Encrypt" textFill="#fcfcfc">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#openDecryptWindow" prefHeight="54.0" prefWidth="195.0" style="-fx-background-color: #81817F;" text="Decrypt" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets top="5.0" />
+         </opaqueInsets>
+      </HBox>
+      <TextArea fx:id="outputArea" layoutX="455.0" layoutY="129.0" prefHeight="330.0" prefWidth="240.0" promptText="Output" wrapText="true" />
+   </children>
+</AnchorPane>

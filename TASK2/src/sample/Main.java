@@ -4,17 +4,21 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("TASK2");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.setResizable(false);
-        primaryStage.show();
+
+        Parent encryptWindow = FXMLLoader.load(getClass().getResource("encrypt.fxml"));
+        Stage window = new Stage();
+        window.initModality(Modality.APPLICATION_MODAL);
+
+        window.setScene(new Scene(encryptWindow));
+        window.setResizable(true);
+        window.show();
     }
 
 
