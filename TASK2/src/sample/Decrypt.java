@@ -16,6 +16,17 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.io.FileOutputStream;
+import java.security.SecureRandom;
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.spec.IvParameterSpec;
+import java.util.Base64;
+
 public class Decrypt {
 
     @FXML private ResourceBundle resources;
@@ -26,11 +37,11 @@ public class Decrypt {
     @FXML private Button decryptButton;
 
 
-    public void Decrypt(javafx.event.ActionEvent event) {
+    public void decryptAction(javafx.event.ActionEvent event) {
 
     }
 
-    public void OpenFileChooser(javafx.event.ActionEvent event) {
+    public void openFileChooser(javafx.event.ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose a text file with cipher text");
         fileChooser.getExtensionFilters().addAll(

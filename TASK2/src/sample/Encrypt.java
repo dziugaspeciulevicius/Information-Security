@@ -1,8 +1,9 @@
 package sample;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
-import java.util.Base64;
+import java.security.*;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -13,11 +14,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import javax.crypto.Cipher;
-import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.*;
+import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.spec.IvParameterSpec;
+import org.apache.commons.codec.binary.Base64;
+
+
 
 public class Encrypt {
 
@@ -25,11 +31,11 @@ public class Encrypt {
     @FXML private URL location;
     @FXML private Button encryptButton;
     @FXML private TextArea outputArea;
-    @FXML private TextArea plaintextInput;
-    @FXML private TextArea keyInput;
+    @FXML private TextField plaintextInput;
+    @FXML private TextField keyInput;
 
 
-    public void Encrypt(ActionEvent event) {
+    public void encryptAction(ActionEvent event) throws Exception {
 
     }
 

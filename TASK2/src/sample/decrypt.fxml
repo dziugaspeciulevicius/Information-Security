@@ -15,12 +15,12 @@
          <font>
             <Font size="22.0" />
          </font></Text>
-      <Button fx:id="chooseFile" layoutX="123.0" layoutY="252.0" mnemonicParsing="false" onAction="#OpenFileChooser" style="-fx-background-color: #E68FAD; -fx-font-weight: 700; -fx-font-size: 18;" text="Choose file" textFill="WHITE">
+      <Button fx:id="chooseFile" layoutX="123.0" layoutY="252.0" mnemonicParsing="false" onAction="#openFileChooser" style="-fx-background-color: #E68FAD; -fx-font-weight: 700; -fx-font-size: 18;" text="Choose file" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font></Button>
       <TextField fx:id="chosenFileField" alignment="CENTER" editable="false" layoutX="82.0" layoutY="313.0" prefHeight="31.0" prefWidth="196.0" promptText="Chosen file" />
-      <Button fx:id="decryptButton" layoutX="324.0" layoutY="252.0" mnemonicParsing="false" onAction="#Decrypt" style="-fx-background-color: #E68FAD;" text="Decrypt" textFill="WHITE">
+      <Button fx:id="decryptButton" layoutX="324.0" layoutY="252.0" mnemonicParsing="false" onAction="#decryptAction" style="-fx-background-color: #E68FAD;" text="Decrypt" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Button>
