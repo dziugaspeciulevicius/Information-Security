@@ -8,14 +8,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.Statement;
-
-
 
 public class Encrypt {
 
@@ -24,8 +20,7 @@ public class Encrypt {
     @FXML private TextField keyField;
 
 
-    @FXML
-    public void encryptAction() {
+    public void encryptAction(javafx.event.ActionEvent event) {
 
         String text = plainText.getText();
         String secretKey = keyField.getText();
@@ -36,7 +31,6 @@ public class Encrypt {
             Connection conn = null;
             Statement stmt = null;
             Class.forName("org.sqlite.JDBC");
-            System.out.print("\nConnecting to database...");
             conn = DriverManager.getConnection
                     ("jdbc:sqlite:D:\\MY FILES\\Studies\\4 SEMESTER\\Information-Security\\TASK2\\src\\sample\\Data.db");
             stmt = conn.createStatement();

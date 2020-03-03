@@ -1,10 +1,10 @@
 package sample;
 
-import java.awt.event.ActionEvent;
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,47 +13,38 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.io.FileOutputStream;
-import java.security.SecureRandom;
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
-import javax.crypto.spec.IvParameterSpec;
-import java.util.Base64;
 
 public class Decrypt {
 
-    @FXML private ResourceBundle resources;
-    @FXML private URL location;
-    @FXML private Button chooseFile;
     @FXML private TextArea outputArea;
-    @FXML private TextField chosenFileField;
+    @FXML private TextField keyInputField;
     @FXML private Button decryptButton;
 
 
     public void decryptAction(javafx.event.ActionEvent event) {
-        chosenFileField.getText();
 
-    }
+        Connection c = null;
+        Statement stmt = null;
+        try {
+            c = DriverManager.getConnection
+                    ("jdbc:sqlite:D:\\MY FILES\\Studies\\4 SEMESTER\\Information-Security\\TASK2\\src\\sample\\Data.db");
 
-    public void openFileChooser(javafx.event.ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Choose a text file with cipher text");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("TXT", "*.txt"),
-                new FileChooser.ExtensionFilter("DB", "*.db")
-        );
-        File file = fileChooser.showOpenDialog(null);
+            c.setAutoCommit(false);
+            stmt = c.createStatement();
+            ResultSet rs = stmt.executeQuery( "SELECT cipherText FROM Data;");
+            while ( rs.next() ) {
+                String  text = rs.getString("cipherText");
 
-        if(file != null) {
-            System.out.println("Path: " + file.getAbsolutePath());
-            chosenFileField.setText(file.getName() + " is chosen!");
+                String decrypted = AES.decryption(text,keyInputField.getText());
+                outputArea.appendText(decrypted+"\n");
+
+            }
+            rs.close();
+            stmt.close();
+            c.close();
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
     }
 
