@@ -1,43 +1,54 @@
 package sample;
 
-import java.io.*;
-import java.net.URL;
-import java.security.*;
-import java.util.Arrays;
-import java.util.ResourceBundle;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import javax.crypto.*;
-import javax.crypto.spec.PBEKeySpec;
-import javax.crypto.spec.SecretKeySpec;
-import javax.crypto.spec.IvParameterSpec;
-import org.apache.commons.codec.binary.Base64;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 
 
 public class Encrypt {
 
-    @FXML private ResourceBundle resources;
-    @FXML private URL location;
-    @FXML private Button encryptButton;
     @FXML private TextArea outputArea;
-    @FXML private TextField plaintextInput;
-    @FXML private TextField keyInput;
+    @FXML private TextArea plainText;
+    @FXML private TextField keyField;
 
 
-    public void encryptAction(ActionEvent event) throws Exception {
+    @FXML
+    public void encryptAction() {
 
+        String text = plainText.getText();
+        String secretKey = keyField.getText();
+        String encrypted =AES.encryption(text, secretKey);
+        outputArea.setText(encrypted);
+
+        try{
+            Connection conn = null;
+            Statement stmt = null;
+            Class.forName("org.sqlite.JDBC");
+            System.out.print("\nConnecting to database...");
+            conn = DriverManager.getConnection
+                    ("jdbc:sqlite:D:\\MY FILES\\Studies\\4 SEMESTER\\Information-Security\\TASK2\\src\\sample\\Data.db");
+            stmt = conn.createStatement();
+            stmt.executeUpdate("INSERT INTO Data ('cipherText') VALUES('" +encrypted+ "')");
+            conn.close();
+
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
     }
+
+
 
     public void openDecryptWindow(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();

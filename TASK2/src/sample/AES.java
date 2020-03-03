@@ -32,7 +32,7 @@ public class AES {
         }
     }
 
-    public static String encrypt(String strToEncrypt, String secret)
+    public static String encryption(String strToEncrypt, String secret)
     {
         try
         {
@@ -48,7 +48,7 @@ public class AES {
         return null;
     }
 
-    public static String decrypt(String strToDecrypt, String secret)
+    public static String decryption(String strToDecrypt, String secret)
     {
         try
         {

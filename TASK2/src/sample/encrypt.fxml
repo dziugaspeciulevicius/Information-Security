@@ -14,8 +14,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="506.0" prefWidth="739.0" style="-fx-background-color: #A4A4A2;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Encrypt">
    <children>
-      <TextArea layoutX="87.0" layoutY="172.0" prefHeight="115.0" prefWidth="200.0" promptText="Enter plaintext here" wrapText="true" />
-      <TextArea layoutX="87.0" layoutY="302.0" prefHeight="73.0" prefWidth="200.0" promptText="Enter key here" wrapText="true" />
+      <TextArea fx:id="plainText" layoutX="86.0" layoutY="172.0" prefHeight="152.0" prefWidth="200.0" promptText="Enter plaintext here" wrapText="true" />
       <Button fx:id="encryptButton" layoutX="325.0" layoutY="234.0" mnemonicParsing="false" onAction="#encryptAction" style="-fx-background-color: #E68FAD;" text="Encrypt" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
@@ -42,5 +41,6 @@
          </opaqueInsets>
       </HBox>
       <TextArea fx:id="outputArea" layoutX="455.0" layoutY="129.0" prefHeight="330.0" prefWidth="240.0" promptText="Output" wrapText="true" />
+      <TextField fx:id="keyField" layoutX="86.0" layoutY="340.0" prefHeight="61.0" prefWidth="200.0" promptText="Enter key here" />
    </children>
 </AnchorPane>

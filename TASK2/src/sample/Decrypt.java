@@ -38,6 +38,7 @@ public class Decrypt {
 
 
     public void decryptAction(javafx.event.ActionEvent event) {
+        chosenFileField.getText();
 
     }
 
@@ -45,7 +46,8 @@ public class Decrypt {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose a text file with cipher text");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("TXT", "*.txt")
+                new FileChooser.ExtensionFilter("TXT", "*.txt"),
+                new FileChooser.ExtensionFilter("DB", "*.db")
         );
         File file = fileChooser.showOpenDialog(null);
 
