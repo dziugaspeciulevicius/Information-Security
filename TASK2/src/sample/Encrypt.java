@@ -19,12 +19,11 @@ public class Encrypt {
     @FXML private TextArea plainText;
     @FXML private TextField keyField;
 
-
     public void encryptAction(javafx.event.ActionEvent event) {
 
         String text = plainText.getText();
         String secretKey = keyField.getText();
-        String encrypted =AES.encryption(text, secretKey);
+        String encrypted = AES.encryption(text, secretKey);
         outputArea.setText(encrypted);
 
         try{
@@ -41,8 +40,6 @@ public class Encrypt {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
     }
-
-
 
     public void openDecryptWindow(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();

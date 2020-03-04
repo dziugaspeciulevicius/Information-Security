@@ -10,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -19,8 +18,6 @@ public class Decrypt {
 
     @FXML private TextArea outputArea;
     @FXML private TextField keyInputField;
-    @FXML private Button decryptButton;
-
 
     public void decryptAction(javafx.event.ActionEvent event) {
 
@@ -38,7 +35,6 @@ public class Decrypt {
 
                 String decrypted = AES.decryption(text,keyInputField.getText());
                 outputArea.appendText(decrypted+"\n");
-
             }
             rs.close();
             stmt.close();
@@ -49,7 +45,6 @@ public class Decrypt {
     }
 
     public void openEncryptWindow(javafx.event.ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
         Parent encryptWindow =  FXMLLoader.load(getClass().getResource("encrypt.fxml"));
         Scene encryptWindow_scene = new Scene(encryptWindow);
         Stage app_stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
