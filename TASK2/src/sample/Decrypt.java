@@ -14,6 +14,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import javax.swing.plaf.nimbus.State;
+
 public class Decrypt {
 
     @FXML private TextArea outputArea;
@@ -29,7 +31,10 @@ public class Decrypt {
 
             c.setAutoCommit(false);
             stmt = c.createStatement();
-            ResultSet rs = stmt.executeQuery( "SELECT cipherText FROM Data;");
+            String sql = "SELECT cipherText FROM Data WHERE yourSecretKey = '" + keyInputField.getText() + "'";
+            Statement statement = c.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+//            ResultSet rs = stmt.executeQuery( "SELECT cipherText FROM Data WHERE yourSecretKey = '"+ keyInputField + "'");
             while ( rs.next() ) {
                 String  text = rs.getString("cipherText");
 

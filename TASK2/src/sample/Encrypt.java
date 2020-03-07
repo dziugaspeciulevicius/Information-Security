@@ -33,7 +33,7 @@ public class Encrypt {
             conn = DriverManager.getConnection
                     ("jdbc:sqlite:D:\\MY FILES\\Studies\\4 SEMESTER\\Information-Security\\TASK2\\src\\sample\\Data.db");
             stmt = conn.createStatement();
-            stmt.executeUpdate("INSERT INTO Data ('cipherText') VALUES('" +encrypted+ "')");
+            stmt.executeUpdate("INSERT INTO Data (cipherText, yourSecretKey) VALUES('" +encrypted+ "', '" + secretKey + "')");
             conn.close();
 
         } catch ( Exception e ) {
