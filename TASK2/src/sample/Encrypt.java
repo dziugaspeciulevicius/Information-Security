@@ -42,7 +42,6 @@ public class Encrypt {
     }
 
     public void openDecryptWindow(javafx.event.ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
         Parent decryptWindow =  FXMLLoader.load(getClass().getResource("decrypt.fxml"));
         Scene decryptWindow_scene = new Scene(decryptWindow);
         Stage app_stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
