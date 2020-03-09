@@ -9,4 +9,4 @@ GUI based application. Saves encrypted text into a database file.
 
 **Encryption** - Takes plaintext and key information from input fields and encrypts the text. Encrypted text is saved into a database file.
 
-**Decryption** - To decrypt text a key is needed which was entered during text encryption.
+**Decryption** - To decrypt text a key is needed which was entered during text encryption. Encryption key is stored with encrypted text, which needs to be fixed.
