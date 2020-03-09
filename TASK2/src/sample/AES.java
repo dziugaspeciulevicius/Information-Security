@@ -18,7 +18,8 @@ public class AES {
         MessageDigest sha = null;
         try {
             key = myKey.getBytes("UTF-8");
-            sha = MessageDigest.getInstance("SHA-1");
+            sha = MessageDigest.getInstance("SHA3-512");
+            // https://en.wikipedia.org/wiki/Secure_Hash_Algorithms     SHA-1 = BAD
             key = sha.digest(key);
             key = Arrays.copyOf(key, 16);
             secretKey = new SecretKeySpec(key, "AES");
@@ -34,7 +35,23 @@ public class AES {
     static String encryption(String strToEncrypt, String secret) {
         try {
             setKey(secret);
-            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+
+            /*        ECB - Electronic CodeBook / CBC - Cipher Blocker Chaining        */
+            /*              FOR SOME REASON CBC MODE DOES NOT WORK                     */
+
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding"); //CBC/PKCS7Padding does not work
+            // instantiate the Cipher object as an AES cipher with ECB mode of operation and PKCS5 padding scheme.
+
+            /*
+            COMMENT FROM STACKOVERFLOW:
+
+            "PKCS5Padding cannot be used with AES since it is defined only for a block size of 8 bytes.
+            I assume, AES/CBC/PKCS5Padding is interpreted as AES/CBC/PKCS7Padding internally.
+            The only difference between these padding schemes is that PKCS7Padding has the block size as a parameter,
+            while for PKCS5Padding it is fixed at 8 bytes. When the Block size is 8 bytes they do exactly the same."
+
+            */
+
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
             return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
         } catch (Exception e) {
@@ -46,7 +63,7 @@ public class AES {
     static String decryption(String strToDecrypt, String secret) {
         try {
             setKey(secret);
-            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
             return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
         } catch (Exception e) {

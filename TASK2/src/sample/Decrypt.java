@@ -32,7 +32,6 @@ public class Decrypt {
             String sql = "SELECT cipherText FROM Data WHERE yourSecretKey = '" + keyInputField.getText() + "'";
             Statement statement = c.createStatement();
             ResultSet rs = statement.executeQuery(sql);
-//            ResultSet rs = stmt.executeQuery( "SELECT cipherText FROM Data WHERE yourSecretKey = '"+ keyInputField + "'");
             while ( rs.next() ) {
                 String  text = rs.getString("cipherText");
 
