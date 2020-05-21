@@ -1,5 +1,5 @@
-// Gets a message from the user and encrypts/decrypts it using RSA.
-// Industrial strength RSA would encrypt 2048+ bits at a time and use much larger primes.
+//The message is encrypted using the sender's private key and recipient's public key.
+//The message is decrypted with the recipient's private key and sender's public key.
 // That's how I understood this.
 
 package com.company;
@@ -24,19 +24,19 @@ import java.util.*; // for Scanner
 
 public class Main {
 
-    private static final Scanner scanner = new Scanner(System.in);
-
-    private int p, q, n, z, d = 0, e, i;
-    // p and q  -> PRIMES
-    // n        -> n = p * q
-    // z        -> z = (p - 1)*(q - 1)
-    // d        -> PRIVATE KEY
-    // e        -> PUBLIC KEY (1-z)
-    // i        -> looping variable
-
     public static void main(String args[]) {
         run(); //calling run method
     }
+
+    private static final Scanner scanner = new Scanner(System.in);
+    private int p, q, n, z, d = 0, e, i;
+    // p and q  -> PRIMES
+    // n        -> n = p * q    (module)
+    // d        -> PRIVATE KEY
+    // z (fi)   -> z = (p - 1)*(q - 1) (how many co-prime numbers)
+
+    // e        -> PUBLIC KEY (1-fi) (cannot be smaller than 1 and be bigger than fi)
+    // i        -> looping variable
 
     private Main() {
 
@@ -53,7 +53,6 @@ public class Main {
             if (gcd(e , z) == 1) {
                 break;
             }
-
         }
         System.out.println("the value of e (public key) = " + e);
 
@@ -70,6 +69,7 @@ public class Main {
 
 
     /*=========== e range - 1-z ===========*/
+    //computing the greatest common divisor
     private static int gcd(int e, int z) {
         if (e == 0) {
             return z;
@@ -151,9 +151,9 @@ public class Main {
 
             keyConn.close();
             resultConn.close();
-        }catch ( Exception e ) {
-            e.printStackTrace();             //prints line numbers + call stack
-            System.out.println(e);           //prints thrown exception
+        } catch ( Exception e ) {
+            e.printStackTrace();
+            System.out.println(e);
         }
     }
 }
