@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" fx:id="anchorid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="611.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane id="AnchorPane" fx:id="anchorid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="1293.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <StackPane layoutX="364.0" layoutY="205.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
@@ -17,15 +17,15 @@
                   <VBox style="-fx-background-color: white;" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
-            <AnchorPane prefHeight="570.0" prefWidth="1250.0" style="-fx-background-color: white;">
+            <AnchorPane prefHeight="491.0" prefWidth="1233.0" style="-fx-background-color: white;">
                <children>
-                  <Button fx:id="sendButton" layoutX="64.0" layoutY="543.0" mnemonicParsing="false" onAction="#sendAction" prefHeight="37.0" prefWidth="126.0" style="-fx-background-color: #3B969B; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 50px;" text="Send" />
-                  <Button fx:id="clearButton" alignment="CENTER" layoutX="361.0" layoutY="543.0" mnemonicParsing="false" onAction="#clearAction" prefHeight="37.0" prefWidth="126.0" style="-fx-background-color: #FE9992; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 50px;" text="Clear all" textAlignment="CENTER" />
-                  <Text fill="WHITE" layoutX="245.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1em; -fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #3B969B;" text="Message" />
-                  <TextArea fx:id="messageField" layoutX="98.0" layoutY="89.0" prefHeight="129.0" prefWidth="355.0" promptText="Input your text here" wrapText="true" />
-                  <Button fx:id="verifyButton" layoutX="213.0" layoutY="543.0" mnemonicParsing="false" onAction="#verifyAction" prefHeight="37.0" prefWidth="126.0" style="-fx-background-color: #FFAE42; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 50px;" text="Verify" />
-                  <TextArea fx:id="outputField" editable="false" layoutX="98.0" layoutY="307.0" prefHeight="170.0" prefWidth="355.0" promptText="signature" wrapText="true" />
-                  <Text fill="WHITE" layoutX="241.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1em; -fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #3B969B;" text="Signature" />
+                  <Button fx:id="sendButton" layoutX="196.0" layoutY="346.0" mnemonicParsing="false" onAction="#sendAction" prefHeight="57.0" prefWidth="160.0" style="-fx-background-color: #3B969B; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 50px;" text="Send" />
+                  <Button fx:id="clearButton" alignment="CENTER" layoutX="537.0" layoutY="171.0" mnemonicParsing="false" onAction="#clearAction" prefHeight="57.0" prefWidth="160.0" style="-fx-background-color: #FE9992; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 50px;" text="Clear all" textAlignment="CENTER" />
+                  <Text fill="WHITE" layoutX="230.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1em; -fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #3B969B;" text="END 1 MESSAGE" />
+                  <TextArea fx:id="messageFieldEnd1" layoutX="98.0" layoutY="89.0" prefHeight="221.0" prefWidth="355.0" promptText="Input your message that you want to send" wrapText="true" />
+                  <Button fx:id="verifyButton" layoutX="880.0" layoutY="346.0" mnemonicParsing="false" onAction="#verifyAction" prefHeight="57.0" prefWidth="160.0" style="-fx-background-color: #FFAE42; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 50px;" text="Verify" />
+                  <TextArea fx:id="messageFieldEnd2" layoutX="782.0" layoutY="89.0" prefHeight="221.0" prefWidth="355.0" promptText="Now enter the message that was sent to check if hashes are correct" wrapText="true" />
+                  <Text fill="WHITE" layoutX="914.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 1em; -fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #3B969B;" text="END 2 MESSAGE" />
                </children>
                <effect>
                   <DropShadow />

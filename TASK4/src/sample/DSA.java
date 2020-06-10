@@ -15,10 +15,14 @@ public class DSA {
     public PublicKey publicKey;
     byte[] signature;
 
+    private static final String ALGORITHM = "RSA";
+    private static final String SIGNATURE = "SHA256withRSA";
+    private static final String HASH = "SHA-256";
+
     public void generateKeys() throws NoSuchAlgorithmException {
 
         //Creating keypair generator object
-        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(ALGORITHM);
 
         //Initializing the key pair generator
         keyPairGenerator.initialize(2048);
@@ -37,7 +41,7 @@ public class DSA {
 
         hashText(message);
 
-        Signature sign = Signature.getInstance("SHA256withRSA");
+        Signature sign = Signature.getInstance(SIGNATURE);
 
         //Initialize the signature
         sign.initSign(privateKey);
@@ -58,7 +62,7 @@ public class DSA {
     public boolean getVerified(String message, byte[] signature)
             throws NoSuchAlgorithmException, InvalidKeyException, SignatureException {
 
-        Signature verificationSignature = Signature.getInstance("SHA256withRSA");
+        Signature verificationSignature = Signature.getInstance(SIGNATURE);
 
         verificationSignature.initVerify(publicKey);
         byte[] bytes = message.getBytes();
@@ -70,7 +74,7 @@ public class DSA {
 
     public static void hashText(String base) {
         try{
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            MessageDigest digest = MessageDigest.getInstance(HASH);
             byte[] hash = digest.digest(base.getBytes(StandardCharsets.UTF_8));
             StringBuilder hexString;
             hexString = new StringBuilder();
@@ -85,5 +89,14 @@ public class DSA {
         } catch(Exception e){
             throw new RuntimeException(e);
         }
+    }
+
+    public byte[] hashString(String msg) throws NoSuchAlgorithmException {
+        byte[] msgBytes = msg.getBytes(StandardCharsets.UTF_8);
+
+        MessageDigest digest = MessageDigest.getInstance(HASH);
+        byte[] hashedMsgBytes = digest.digest(msgBytes);
+
+        return hashedMsgBytes;
     }
 }
