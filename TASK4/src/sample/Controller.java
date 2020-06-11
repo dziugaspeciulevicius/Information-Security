@@ -18,13 +18,15 @@ public class Controller {
     @FXML private AnchorPane anchorid;
     @FXML private Button sendButton;
 
-    DSA DSA = new DSA();
+    RSA RSA = new RSA();
 
     public void sendAction()
             throws NoSuchAlgorithmException, SignatureException, InvalidKeyException {
+
         String message = messageFieldEnd1.getText();
-        DSA.generateKeys();
-        DSA.getSignature(message);
+        RSA.generateKeys();
+        RSA.getSignature(message);
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information Dialog");
         alert.setHeaderText(null);
@@ -36,7 +38,7 @@ public class Controller {
     public void verifyAction() throws NoSuchAlgorithmException, InvalidKeyException, SignatureException {
         String message = messageFieldEnd2.getText();
 
-        if (DSA.getVerified(message, DSA.signature)) {
+        if (RSA.getVerified(message, RSA.signature)) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
@@ -64,6 +66,5 @@ public class Controller {
         assert verifyButton != null : "fx:id=\"verifyButton\" was not injected: check your FXML file 'sample.fxml'.";
         assert anchorid != null : "fx:id=\"anchorid\" was not injected: check your FXML file 'sample.fxml'.";
         assert sendButton != null : "fx:id=\"sendButton\" was not injected: check your FXML file 'sample.fxml'.";
-
     }
 }

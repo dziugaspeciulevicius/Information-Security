@@ -9,7 +9,7 @@ https://www.tutorialspoint.com/java_cryptography/java_cryptography_creating_sign
 https://stackoverflow.com/questions/5531455/how-to-hash-some-string-with-sha256-in-java
 */
 
-public class DSA {
+public class RSA {
 
     public PrivateKey privateKey;
     public PublicKey publicKey;
@@ -64,15 +64,23 @@ public class DSA {
 
         Signature verificationSignature = Signature.getInstance(SIGNATURE);
 
+        //Initialize verification
         verificationSignature.initVerify(publicKey);
+
+        //--The update() method of the Signature class accepts a byte array representing the
+        //data to be signed or verified and updates the current object with the data given.
+        //--Update the initialized Signature object by passing the data to be signed
+        //to the update() method in the form of byte array as shown below.
         byte[] bytes = message.getBytes();
 
+        //Adding data to the verification Signature
         verificationSignature.update(bytes);
 
-        return verificationSignature.verify(signature); //signature.verify(tampered data)
+        //signature.verify(tampered data)
+        return verificationSignature.verify(signature);
     }
 
-    public static void hashText(String base) {
+    public static String hashText(String base) {
         try{
             MessageDigest digest = MessageDigest.getInstance(HASH);
             byte[] hash = digest.digest(base.getBytes(StandardCharsets.UTF_8));
@@ -86,17 +94,9 @@ public class DSA {
                 hexString.append(hex);
                 i++;
             }
+            return hexString.toString();
         } catch(Exception e){
             throw new RuntimeException(e);
         }
-    }
-
-    public byte[] hashString(String msg) throws NoSuchAlgorithmException {
-        byte[] msgBytes = msg.getBytes(StandardCharsets.UTF_8);
-
-        MessageDigest digest = MessageDigest.getInstance(HASH);
-        byte[] hashedMsgBytes = digest.digest(msgBytes);
-
-        return hashedMsgBytes;
     }
 }
